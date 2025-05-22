@@ -1,103 +1,146 @@
-import Image from "next/image";
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import { ArrowRight, Pizza, Clock, Shield, Sparkles } from "lucide-react";
+import Link from "next/link";
 
 export default function Home() {
   return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+    <div className="min-h-screen bg-gradient-to-b from-gray-900 via-purple-900 to-gray-900 text-white">
+      {/* Navigation */}
+      <nav className="container mx-auto px-6 py-4">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center space-x-2">
+            <Pizza className="h-8 w-8 text-orange-500" />
+            <span className="text-2xl font-bold bg-gradient-to-r from-orange-400 to-pink-600 bg-clip-text text-transparent">
+              PizzaHub
+            </span>
+          </div>
+          <div className="flex items-center space-x-4">
+            <SignedIn>
+              <Link
+                href="/dashboard"
+                className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium hover:bg-orange-600 transition-colors"
+              >
+                Dashboard
+              </Link>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="rounded-lg px-4 py-2 text-sm font-medium hover:bg-white/10 transition-colors">
+                  Sign In
+                </button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="rounded-lg bg-orange-500 px-4 py-2 text-sm font-medium hover:bg-orange-600 transition-colors">
+                  Sign Up
+                </button>
+              </SignUpButton>
+            </SignedOut>
+          </div>
+        </div>
+      </nav>
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+      {/* Hero Section */}
+      <main className="container mx-auto px-6 py-20">
+        <div className="flex flex-col items-center text-center">
+          <div className="mb-8 inline-flex items-center rounded-full bg-orange-500/10 px-4 py-2 text-sm text-orange-400">
+            <Sparkles className="mr-2 h-4 w-4" />
+            <span>Experience the future of pizza ordering</span>
+          </div>
+          <h1 className="mb-6 text-6xl font-bold leading-tight">
+            Order Your Perfect{" "}
+            <span className="bg-gradient-to-r from-orange-400 to-pink-600 bg-clip-text text-transparent">
+              Pizza
+            </span>
+            <br />
+            <span className="text-4xl">in Minutes</span>
+          </h1>
+          <p className="mb-8 max-w-2xl text-xl text-gray-300">
+            Track your orders in real-time, manage your favorite pizzas, and enjoy a seamless ordering experience.
+          </p>
+          <div className="flex space-x-4">
+            <SignedOut>
+              <SignUpButton mode="modal">
+                <button className="group flex items-center space-x-2 rounded-lg bg-orange-500 px-6 py-3 text-lg font-medium hover:bg-orange-600 transition-colors">
+                  Get Started
+                  <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+                </button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <Link
+                href="/dashboard"
+                className="group flex items-center space-x-2 rounded-lg bg-orange-500 px-6 py-3 text-lg font-medium hover:bg-orange-600 transition-colors"
+              >
+                Go to Dashboard
+                <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              </Link>
+            </SignedIn>
+          </div>
+        </div>
+
+        {/* Features Section */}
+        <div className="mt-32 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {features.map((feature, index) => (
+            <div
+              key={index}
+              className="group rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:bg-white/10"
+            >
+              <div className="mb-4 rounded-lg bg-orange-500/10 p-3 w-fit">
+                <feature.icon className="h-6 w-6 text-orange-400" />
+              </div>
+              <h3 className="mb-2 text-xl font-semibold">{feature.title}</h3>
+              <p className="text-gray-400">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+
+        {/* Stats Section */}
+        <div className="mt-32 grid grid-cols-1 gap-8 md:grid-cols-3">
+          {stats.map((stat, index) => (
+            <div
+              key={index}
+              className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm"
+            >
+              <div className="text-3xl font-bold text-orange-400">{stat.value}</div>
+              <div className="mt-2 text-sm text-gray-400">{stat.label}</div>
+            </div>
+          ))}
         </div>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
     </div>
   );
 }
+
+const features = [
+  {
+    title: "Real-time Tracking",
+    description: "Track your pizza from the oven to your doorstep with live updates.",
+    icon: Clock,
+  },
+  {
+    title: "Secure Orders",
+    description: "Your orders are protected with enterprise-grade security.",
+    icon: Shield,
+  },
+  {
+    title: "Favorite Orders",
+    description: "Save your favorite pizzas for quick reordering.",
+    icon: Pizza,
+  },
+];
+
+const stats = [
+  {
+    value: "10k+",
+    label: "Happy Customers",
+  },
+  {
+    value: "30min",
+    label: "Average Delivery Time",
+  },
+  {
+    value: "99%",
+    label: "Order Accuracy",
+  },
+];
