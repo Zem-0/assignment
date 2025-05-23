@@ -1,119 +1,61 @@
-# Modern Next.js Application
+# AI Chat Application
 
-A modern web application built with Next.js, TypeScript, and Tailwind CSS, featuring authentication with Clerk and beautiful UI components.
+## Author
+Parinith
+parinith99@gmail.com
 
-## 🚀 Features
+## Overview
+A modern AI chat application built with Next.js that provides an interactive chat interface. The application features real-time messaging, authentication, and a responsive design.
 
-- ⚡️ Next.js 14 with App Router
-- 🔒 Authentication with Clerk
-- 🎨 Tailwind CSS for styling
-- 📱 Responsive design
-- 🎯 TypeScript for type safety
-- ⚛️ React 18
-- 🎭 Framer Motion for animations
-- 🎨 Radix UI components
-- 🛠️ ESLint for code quality
-
-## 🛠️ Tech Stack
-
-- **Framework:** Next.js 14
-- **Language:** TypeScript
-- **Styling:** Tailwind CSS
-- **Authentication:** Clerk
-- **UI Components:** Radix UI
-- **Animations:** Framer Motion
-- **Icons:** Lucide React
-- **Development:** ESLint, TypeScript
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- Node.js 18.x or later
-- npm or yarn
-
-### Installation
+## Setup Instructions
 
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/Zem-0/assignment.git
-   cd assignment
-   ```
+```bash
+git clone https://github.com/Zem-0/assignment.git
+cd assignment
+```
 
 2. Install dependencies:
-   ```bash
-   npm install
-   # or
-   yarn install
-   ```
+```bash
+npm install
+```
 
 3. Set up environment variables:
-   Create a `.env.local` file in the root directory and add your Clerk credentials:
-   ```
-   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
-   CLERK_SECRET_KEY=your_secret_key
-   ```
+Create a `.env.local` file in the root directory with the following variables:
+```
+# Google OAuth
+GOOGLE_CLIENT_ID=your_client_id
+GOOGLE_CLIENT_SECRET=your_client_secret
+
+# Clerk Authentication
+NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your_publishable_key
+CLERK_SECRET_KEY=your_secret_key
+```
 
 4. Run the development server:
-   ```bash
-   npm run dev
-   # or
-   yarn dev
-   ```
+```bash
+npm run dev
+```
 
 5. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-## 📝 Available Scripts
+## Third-Party Libraries
+- **Authentication:** @clerk/nextjs
+- **UI Components:** 
+  - @radix-ui/react-dialog
+  - @radix-ui/react-slot
+- **Styling Utilities:**
+  - class-variance-authority
+  - clsx
+  - tailwind-merge
+- **Animations:** framer-motion
+- **Icons:** lucide-react
 
-- `npm run dev` - Start development server
-- `npm run build` - Build for production
-- `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+## Challenges & Assumptions
+- Implemented secure authentication flow using Clerk
+- Assumed users have a Google account for OAuth login
+- Handled real-time message updates and state management
+- Ensured responsive design across different device sizes
 
-## 🏗️ Project Structure
-
-```
-├── src/              # Source files
-├── public/           # Static files
-├── .next/           # Next.js build output
-├── node_modules/    # Dependencies
-├── middleware.ts    # Next.js middleware
-├── tailwind.config.ts # Tailwind configuration
-├── next.config.js   # Next.js configuration
-├── tsconfig.json    # TypeScript configuration
-└── package.json     # Project dependencies and scripts
-```
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-## 📄 License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## 👥 Author
-
-- Zem-0
-
-## 🙏 Acknowledgments
-
-- Next.js team for the amazing framework
-- Vercel for hosting
-- Clerk for authentication
-- Radix UI for accessible components
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Note
+Never commit your `.env.local` file or expose your OAuth credentials. Always use environment variables for sensitive information.
